@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>暗号化！</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js" integrity="sha512-E8QSvWZ0eCLGk4km3hxSsNmGWbLtSCSUcewDQPQWZF6pEU8GlT8a5fF32wOl1i8ftdMhssTrF/OhyGWwonTcXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+    <div>
+        <h1>暗号化</h1>
+        <label for="encryption_text">メッセージ:</label>
+        <input type="text" id="encryption_text"></input>
+        <br>
+        <label for="encryption_key">暗号化キー:</label>
+        <input type="text" id="encryption_key"></input>
+        <br>
+        <button onclick="encryption_onClick()">暗号化</button>
+        <p>結果:</p>
+        <p id="encryption_result"></p>
+    </div>
+    <di>
+        <h1>復号化</h1>
+        <label for="decryption_text">ここに暗号文:</label>
+        <input type="text" id="decryption_text"></input>
+        <br>
+        <label for="decryption_key">暗号化キー:</label>
+        <input type="text" id="decryption_key"></input>
+        <br>
+        <button onclick="decryption_onClick()">複合化</button>
+        <p>結果:</p>
+        <p id="decryption_result"></p>
+    </di>
+</body>
+<script>
+    function encryption_onClick(){
+        result = document.getElementById("encryption_result")
+        data = document.getElementById("encryption_text").value
+        key = document.getElementById("encryption_key").value
+        result.textContent = CryptoJS.AES.encrypt(data, key).toString()
+    }
+
+    function decryption_onClick(){
+        result = document.getElementById("decryption_result")
+        data = document.getElementById("decryption_text").value
+        key = document.getElementById("decryption_key").value
+        result.textContent = CryptoJS.AES.decrypt(data, key).toString(CryptoJS.enc.Utf8)
+    }
+</script>
+</html>
